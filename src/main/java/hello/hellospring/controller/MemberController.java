@@ -5,8 +5,11 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // 컴포넌트 스캔과 자동 의존관계 설정
 @Controller
@@ -35,11 +38,13 @@ public class MemberController {
     // 참고) 생성자에 @Autowired 를 사용하면 객체 생성 시점에 스프링 컨테이너에서 해당 스프링 빈을 찾아서 주입한다.
     //       생성자가 1개만 있으면 @Autowired 는 생략 가능
 
+    // 회원 등록 폼 컨트롤러
     @GetMapping("/members/new")     // home.html
     public String createForm() {
         return "members/createMemberForm";      // templates/members/createMemberForm.html
     }
 
+    // 회원 컨트롤러에서 회원을 실제 등록하는 기능
     @PostMapping("/members/new")        // createMEmberForm.html 의 method="post"
     public String create(MemberForm form) {
         Member member = new Member();
@@ -48,5 +53,14 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/";        // 회원가입 후 홈 화면으로 이동
+    }
+
+    // 회원 컨트롤러에서 조회 기능
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+
+        return "members/memberList";
     }
 }
