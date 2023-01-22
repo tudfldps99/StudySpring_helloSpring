@@ -1,9 +1,12 @@
 // 2023-01-22
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 // 컴포넌트 스캔과 자동 의존관계 설정
 @Controller
@@ -31,4 +34,19 @@ public class MemberController {
 
     // 참고) 생성자에 @Autowired 를 사용하면 객체 생성 시점에 스프링 컨테이너에서 해당 스프링 빈을 찾아서 주입한다.
     //       생성자가 1개만 있으면 @Autowired 는 생략 가능
+
+    @GetMapping("/members/new")     // home.html
+    public String createForm() {
+        return "members/createMemberForm";      // templates/members/createMemberForm.html
+    }
+
+    @PostMapping("/members/new")        // createMEmberForm.html 의 method="post"
+    public String create(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+
+        memberService.join(member);
+
+        return "redirect:/";        // 회원가입 후 홈 화면으로 이동
+    }
 }
