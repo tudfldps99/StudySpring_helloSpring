@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 // 회원 리포지토리 메모리 구현체
-@Repository
+//@Repository
+// -> 자바 코드로 직접 스프링 빈을 등록하기 위해 @Repository 주석처리
 public class MemoryMemberRepository implements MemberRepository{
 
     /*

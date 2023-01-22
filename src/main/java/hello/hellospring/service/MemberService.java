@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 // 회원 서비스 개발
-@Service        // MemberController.java 에서 발생한 오류 해결
+//@Service        // MemberController.java 에서 발생한 오류 해결
+// -> 자바 코드로 직접 스프링 빈을 등록하기 위해 @Service 주석처리
 public class MemberService {
 
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -20,7 +21,8 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Autowired      // 생성자에 @Autowired 를 사용하면 객체 생성 시점에 스프링 컨테이너에서 해당 스프링 빈을 찾아서 주입한다
+    //@Autowired      // 생성자에 @Autowired 를 사용하면 객체 생성 시점에 스프링 컨테이너에서 해당 스프링 빈을 찾아서 주입한다
+    // -> 자바 코드로 직접 스프링 빈을 등록하기 위해 @Autowired 주석처리
     public MemberService(MemberRepository memberRepository) {       // 외부에서 넣어주도록 변경 (DI - 의존성주입)    --> MemberServiceTest.java
         this.memberRepository = memberRepository;
     }
