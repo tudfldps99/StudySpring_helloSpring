@@ -4,11 +4,14 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 // 회원 서비스 개발
+@Service        // MemberController.java 에서 발생한 오류 해결
 public class MemberService {
 
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -16,7 +19,9 @@ public class MemberService {
     // --> 회원 서비스 코드를 DI (Dependency Injection) 가능하게 변경
 
     private final MemberRepository memberRepository;
-    public MemberService(MemberRepository memberRepository) {       // 외부에서 넣어주도록 변경 (DI)    --> MemberServiceTest.java
+
+    @Autowired      // 생성자에 @Autowired 를 사용하면 객체 생성 시점에 스프링 컨테이너에서 해당 스프링 빈을 찾아서 주입한다
+    public MemberService(MemberRepository memberRepository) {       // 외부에서 넣어주도록 변경 (DI - 의존성주입)    --> MemberServiceTest.java
         this.memberRepository = memberRepository;
     }
 
