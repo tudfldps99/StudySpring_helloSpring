@@ -6,6 +6,7 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,9 @@ import java.util.Optional;
 // 회원 서비스 개발
 //@Service        // MemberController.java 에서 발생한 오류 해결
 // -> 자바 코드로 직접 스프링 빈을 등록하기 위해 @Service 주석처리
+@Transactional      // 2023-01-23) JPA 사용하여 데이터를 저장&수정하려면 Service 계층에 @Transactional 필요
+                    // 스프링은 해당 클래스의 메서드를 실행할 때 트랜잭션을 시작하고, 메서드가 정상 종료되면 트랜잭션을 커밋한다. 만약 런타임 예외가 발생하면 롤백한다.
+                    // JPA를 통한 모든 데이터 변경은 트랜잭션 안에서 실행해야 한다.
 public class MemberService {
 
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
