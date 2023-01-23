@@ -2,6 +2,7 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
@@ -42,7 +43,9 @@ public class SpringConfig {
 
         // 2023-01-23
         // 기존 return 문 주석 + 순수 Jdbc 구현 -> 스프링 설정 변경
-        return new JdbcMemberRepository(dataSource);        // 개방-폐쇄 원칙 (OCP, Open-Closed Principle) : 확장에는 열려있고, 수정&변경에는 닫혀있다.
+        //return new JdbcMemberRepository(dataSource);        // 개방-폐쇄 원칙 (OCP, Open-Closed Principle) : 확장에는 열려있고, 수정&변경에는 닫혀있다.
                                                             // 스프링의 DI(Dependencies Injection) 을 사용하면, 기존 코드를 전혀 손대지 않고, 설정만으로 구현 클래스를 변경 가능
+        // 기존 return 문 주석 + JDBCTemplate 사용 -> 스프링 설정 변경
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
