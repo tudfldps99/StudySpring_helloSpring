@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// 회원 서비스 테스트
+// 회원 서비스 테스트 (순수한 단위 테스트 - 단위 테스트를 잘 만드는게 더 좋은 테스트)
 class MemberServiceTest {
 
 //    MemberService memberService = new MemberService();
