@@ -7,3 +7,8 @@
 4. `cd build/libs` 확인하면 `hello-spring-0.0.1-SNAPSHOT.jar` 파일 존재
 5. `java -jar hello-spring-0.0.1-SNAPSHOT.jar` 입력
 6. 실행 완료
+
+## H2 데이터베이스 연결
+1. `http://h2database.com/html/download-archive.html` - 1.4.200 버전
+2. h2.bat 실행
+3. `C:\Users\User`에서 test.mv.db 파일 생성 확인
