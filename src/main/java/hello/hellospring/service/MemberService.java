@@ -52,15 +52,9 @@ public class MemberService {
                 });
         */
 
+        /*
         // 2023-01-23) AOP가 필요한 상황: 모든 메소드의 호출 시간을 측정하고 싶다면?
         // -> 시간을 측정하는 로직과 핵심 비즈니스의 로직이 섞여서 유지보수가 어렵고, 시간을 측정하는 로직을 변경할 때 모든 로직을 찾아가면서 변경해야 한다.
-        /*
-             // 위의 코드 정리2 - 메소드로 분리
-            validateDuplicateMember(member);        // 중복회원 검증
-
-            memberRepository.save(member);
-            return member.getId();
-        */
         long start = System.currentTimeMillis();
         try {
             // 위의 코드 정리2 - 메소드로 분리
@@ -72,7 +66,14 @@ public class MemberService {
             long finish = System.currentTimeMillis();
             long timeMs = finish - start;
             System.out.println("join = " + timeMs + "ms");
-        }
+        }*/
+
+        // AOP 사용 후 위의 try-catch 문 필요 X
+        validateDuplicateMember(member);        // 중복회원 검증
+
+        memberRepository.save(member);
+        return member.getId();
+
     }
 
     public void validateDuplicateMember(Member member) {
@@ -86,8 +87,7 @@ public class MemberService {
      *   전체 회원 조회
      */
     public List<Member> findMembers() {
-        // return memberRepository.findAll();
-
+        /*
         // 2023-01-23) AOP가 필요한 상황: 모든 메소드의 호출 시간을 측정하고 싶다면?
         long start = System.currentTimeMillis();
         try {
@@ -97,6 +97,10 @@ public class MemberService {
             long timeMs = finish - start;
             System.out.println("findMembers = " + timeMs + "ms");
         }
+         */
+
+        // AOP 사용 후 위의 try-catch 문 필요 X
+        return memberRepository.findAll();
     }
 
     public Optional<Member> findOne(Long memberId) {

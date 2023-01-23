@@ -1,6 +1,7 @@
 // 2023-01-22
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.*;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,6 @@ public class SpringConfig {
         this.memberRepository = memberRepository;
     }
 
-
     @Bean
     public MemberService memberService() {
         //return new MemberService(memberRepository());
@@ -72,6 +72,15 @@ public class SpringConfig {
 
         // 3. 기존 return 문 & dataSource 변수 선언 주석 + JPA 사용 -> 스프링 설정 변경
         return new JpaMemberRepository(em);
+    }
+     */
+
+    // AOP 등록
+    // SpringConfig.java 에 Bean 등록 or TimeTraceAop 에 @Component 어노테이션 사용
+    /*
+    @Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
     }
      */
 }
