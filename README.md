@@ -12,3 +12,5 @@
 1. `http://h2database.com/html/download-archive.html` - 1.4.200 버전
 2. h2.bat 실행
 3. `C:\Users\User`에서 test.mv.db 파일 생성 확인
+4. build.gradle 파일에 jdbc, h2 데이터베이스 관련 라이브러리 추가
+5. resources/application.properties 에 스프링부트 데이터베이스 연결 설정 추가
